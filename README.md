@@ -45,14 +45,14 @@ O firmware está localizado no diretório `Firmware` e está configurado como um
 
 O diretório `Matlab` contém a fundação matemática do projeto.
 
-* **`Scripts/SalavaParams.m`**: Define as constantes físicas do sistema (massas, comprimentos, inércia, constantes do motor) e as salva em `Parametros/parametros_planta.mat`.
-    * *Parâmetros incluem:* $M_h$ (Massa do cubo), $M_r$ (Massa do rotor), $L$ (Comprimento), $J_h$ (Inércia), etc.
+* **`Scripts/SalvaParams.m`**: Define as constantes físicas do sistema (massas, comprimentos, inércia, constantes do motor) e as salva em `Parametros/parametros_planta.mat`.
+    * *Parâmetros incluem:* $M_h$ (Massa da haste), $M_r$ (Massa do rotor), $L$ (Comprimento), $J_h$ (Inércia), etc.
 * **`PenduloRotativoSim.slx`**: Modelo Simulink para simular a dinâmica do sistema e a resposta do controlador.
 * **`Funcoes/`**: Contém funções geradas automaticamente (`function_G_Rot`, `function_M_Rot`, etc.) para a simulação não linear do sistema.
 * **`Parametros/`**: Armazena arquivos `.mat` com a matriz de ganho de controle `K` calculada.
 
 **Como usar:**
-1.  Edite os parâmetros físicos em `SalavaParams.m` e execute-o.
+1.  Edite os parâmetros físicos em `SalvaParams.m` e execute-o.
 2.  Execute o script de análise principal (ex: `main.mlx`) para calcular a matriz de ganho LQR $K$.
 3.  Atualize a struct `K` em `Firmware/src/main.cpp` com os valores calculados.
 
