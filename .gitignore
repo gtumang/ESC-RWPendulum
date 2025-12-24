@@ -47,3 +47,14 @@ Firmware/.vscode/launch.json
 Firmware/.vscode/ipch
 Firmware/src/Código.code-workspace
 Firmware/.vscode/settings.json
+
+PCB/RWPendulum/*
+
+!PCB/RWPendulum/ESP32-DEVKIT-V1
+!PCB/RWPendulum/RWPendulum_Library
+!PCB/RWPendulum/fp-lib-table
+!PCB/RWPendulum/sym-lib-table
+!PCB/RWPendulum/RWPendulum.kicad_pcb
+!PCB/RWPendulum/RWPendulum.kicad_prl
+!PCB/RWPendulum/RWPendulum.kicad_pro
+!PCB/RWPendulum/RWPendulum.kicad_sch

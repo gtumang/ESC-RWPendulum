@@ -1,0 +1,314 @@
+(footprint "TO255P460X1020X2008-3P"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "3-Pin TO-220")
+	(tags "Integrated Circuit")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(uuid "4e317f24-5be1-45ce-b70f-cfbba8ecfbf6")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "L7805CV"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "b0763377-d505-4564-90ca-1752a297c641")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.st.com/resource/en/datasheet/l78.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "cc392abc-83a4-4f3d-a420-44b1f9657c3f")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Linear voltage regulator,L7805CV 5V 1.5A STMicroelectronics L7805CV, Single Linear Voltage Regulator, 1.5A 5 V, 3-Pin TO-220"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "adec6e98-348d-4638-be85-d6a6298c55a5")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Height" "4.6"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "63778f3b-9c19-4b9b-b476-a1b13e4c89e2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer_Name" "STMicroelectronics"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "efdab79f-3d25-4c58-a2ef-6a78f0b08479")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Manufacturer_Part_Number" "L7805CV"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b30b6bb6-e769-485d-8a6d-658354ffe08b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Mouser Part Number" "511-L7805CV"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "04617a7e-d097-4f7d-96d6-bd9c5061e86a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/STMicroelectronics/L7805CV?qs=9NrABl3fj%2FqplZAHiYUxWg%3D%3D"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "214969a2-bae4-44d8-9cef-fa63a22d91b4")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Arrow Part Number" "L7805CV"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "1151da55-e2df-4d12-ad40-da544360082b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Arrow Price/Stock" "https://www.arrow.com/en/products/l7805cv/stmicroelectronics?utm_currency=USD&region=europe"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "abf94447-55ca-49e1-8ae3-a553337d03ec")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -2.65 -3.07)
+		(end -2.65 0)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "d69f61fa-e506-47a7-a80e-3f49830a2860")
+	)
+	(fp_line
+		(start 7.75 -3.07)
+		(end -2.65 -3.07)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "432e13a9-d931-4b9a-8e58-76a0439c6ffe")
+	)
+	(fp_line
+		(start 7.75 1.53)
+		(end 7.75 -3.07)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "cdfaa47e-f011-4fbb-b01d-2bf39d89e50a")
+	)
+	(fp_line
+		(start -2.9 -3.32)
+		(end 8 -3.32)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "35829f34-59e6-4fb8-a69c-5b09a1dd338e")
+	)
+	(fp_line
+		(start -2.9 1.78)
+		(end -2.9 -3.32)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7231e50a-4cae-4ed8-87ab-48e6a3240c77")
+	)
+	(fp_line
+		(start 8 -3.32)
+		(end 8 1.78)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "7bafa96c-622a-4040-9e34-3b29e8f09fd5")
+	)
+	(fp_line
+		(start 8 1.78)
+		(end -2.9 1.78)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "452d2d47-7887-4600-8691-fcdf12db1117")
+	)
+	(fp_line
+		(start -2.65 -3.07)
+		(end 7.75 -3.07)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b848cc67-0354-4b47-9456-cca51eac1235")
+	)
+	(fp_line
+		(start -2.65 -1.795)
+		(end -1.375 -3.07)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "1163626a-82ac-4c0d-8b0e-2f45da424846")
+	)
+	(fp_line
+		(start -2.65 1.53)
+		(end -2.65 -3.07)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "af223540-9845-4cc3-bbd6-04e15f97d5c2")
+	)
+	(fp_line
+		(start 7.75 -3.07)
+		(end 7.75 1.53)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "87f5b740-6c45-4e61-90de-235aa0ae13f3")
+	)
+	(fp_line
+		(start 7.75 1.53)
+		(end -2.65 1.53)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "0a70169d-26b2-458a-87d8-1c70bca4fb38")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(uuid "9576eb76-64c9-43c1-9b6f-83c8080d817b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 1.98 1.98)
+		(drill 1.32)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "495ae6d4-6f62-4687-a7bc-52750ac24f55")
+	)
+	(pad "2" thru_hole circle
+		(at 2.55 0)
+		(size 1.98 1.98)
+		(drill 1.32)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "b0bd76ec-e397-440a-b653-658dfd05003e")
+	)
+	(pad "3" thru_hole circle
+		(at 5.1 0)
+		(size 1.98 1.98)
+		(drill 1.32)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "dff6c55f-214f-4870-a4b6-caf176370bdd")
+	)
+	(embedded_fonts no)
+	(model "C:\\Users\\gabri\\OneDrive\\Documents\\LibraryLoader\\SamacSys_Parts.3dshapes\\L7805CV.stp"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
