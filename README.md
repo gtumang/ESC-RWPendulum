@@ -28,7 +28,6 @@ The firmware is located in the `Firmware` directory and is configured as a **Pla
 | **Pendulum Encoder** | GPIO 19 | GPIO 18 | Measures pendulum tilt angle |
 | **Motor Driver** | GPIO 25 | GPIO 26 | PWM Output (LEDC) |
 | **Start/Stop Button**| GPIO 4 | - | Toggles control loop (ISR) |
-| **Setup Button** | GPIO 34 | - | (Defined as `BOTAO_SU`, usage varies) |
 
 ### Control Loop
 * **Algorithm**: State-Space Control (LQR).
