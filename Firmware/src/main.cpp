@@ -3,15 +3,15 @@
 #include "defines.h"
 
 // Definições de pinos (ajuste conforme sua conexão)
-#define ENC_RODA_A 17
-#define ENC_RODA_B 16
+#define ENC_RODA_A 5
+#define ENC_RODA_B 18
 #define ENC_PEND_A 19
-#define ENC_PEND_B 18
+#define ENC_PEND_B 21
 #define IN_A 25
 #define IN_B 26
 #define ONBOARD_LED 2
-#define BOTAO_SU 34
-#define BOTAO_CONT 4
+// #define BOTAO_SU 34
+#define BOTAO_CONT 27
 
 // Constantes do sistema
 #define Ts 0.02f
@@ -147,8 +147,8 @@ void setup() {
   Serial.begin(9600);
 
   // ConfiguraÇão botoes
-  pinMode(BOTAO_CONT, INPUT_PULLDOWN);
-  pinMode(BOTAO_SU, INPUT_PULLDOWN);
+  pinMode(BOTAO_CONT, INPUT_PULLUP);
+  // pinMode(BOTAO_SU, INPUT_PULLDOWN);
   attachInterrupt(digitalPinToInterrupt(BOTAO_CONT), enable_cont_ISR, RISING);
 
   // Configuração dos encoders
@@ -228,9 +228,12 @@ void taskControle(void* pvParameteres){
         double u = controle(estados, K);
 
         if(abs(u) > 12) u = sign(u)*12;
+
+        u = 6;
         if(!enable_cont) u=0.0f;
-        u_hist = u;
         drive(u);
+
+        u_hist = enable_cont;
         xSemaphoreGive(handleMutex);
       }
     }
