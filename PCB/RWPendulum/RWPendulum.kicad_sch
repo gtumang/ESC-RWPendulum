@@ -3680,13 +3680,13 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 118.11) (xy 219.71 118.11)
+			(xy 213.36 120.65) (xy 219.71 120.65)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "00519faf-95e2-48db-b67d-633cd6b28e52")
+		(uuid "001d1fa7-5ce4-4610-ac87-0d82cf29948d")
 	)
 	(wire
 		(pts
@@ -3757,6 +3757,16 @@
 			(type default)
 		)
 		(uuid "138cc0db-36a2-4934-bc51-3da9bbc8165a")
+	)
+	(wire
+		(pts
+			(xy 213.36 115.57) (xy 219.71 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1de5ee9c-4a4e-4b71-8da8-5717894fc191")
 	)
 	(wire
 		(pts
@@ -3990,16 +4000,6 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 130.81) (xy 220.98 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "56eafe3e-0c95-4f47-884a-020dea1e1612")
-	)
-	(wire
-		(pts
 			(xy 175.26 35.56) (xy 185.42 35.56)
 		)
 		(stroke
@@ -4180,16 +4180,6 @@
 	)
 	(wire
 		(pts
-			(xy 213.36 115.57) (xy 219.71 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "97b12e5a-3c2b-4a9d-ad28-e36e03ded210")
-	)
-	(wire
-		(pts
 			(xy 175.26 22.86) (xy 175.26 35.56)
 		)
 		(stroke
@@ -4347,6 +4337,16 @@
 			(type default)
 		)
 		(uuid "c0584cc7-39a5-44e3-8e46-654bf01ab166")
+	)
+	(wire
+		(pts
+			(xy 213.36 118.11) (xy 219.71 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c4f30fc3-fb22-44db-a1ee-2c7d879ff69b")
 	)
 	(wire
 		(pts
@@ -4509,7 +4509,7 @@
 		(uuid "09dd53b6-7ac6-4231-8338-5f9306ad7372")
 	)
 	(label "BTN_EN_CONTROL"
-		(at 220.98 130.81 0)
+		(at 219.71 115.57 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4629,7 +4629,7 @@
 		(uuid "851e3822-b6ff-4bdd-b5c6-8504b16410e8")
 	)
 	(label "DRIVER_PWM1"
-		(at 219.71 115.57 0)
+		(at 219.71 118.11 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4699,7 +4699,7 @@
 		(uuid "cc6ac1d2-a49d-4447-a688-5ff604678bbf")
 	)
 	(label "DRIVER_PWM2"
-		(at 219.71 118.11 0)
+		(at 219.71 120.65 0)
 		(effects
 			(font
 				(size 1.27 1.27)
