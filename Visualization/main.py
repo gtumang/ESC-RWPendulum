@@ -24,7 +24,7 @@ except Exception:
     serial = None
 
 # --- Configurações padrão ---
-SERIAL_PORT = "COM3"    # ex: "COM3" no Windows
+SERIAL_PORT = "COM4"    # ex: "COM3" no Windows
 BAUDRATE = 9600
 TIMEOUT = 0.5
 
@@ -263,7 +263,7 @@ def main(args):
     # var_indices são 1-based (1..5) correspondendo a d1..d5
     fig_configs = [
         # exemplo: figura A com d1 (superior) e d5 (inferior) em subplots (eixos Y separados)
-        ([1, 5], True, "Figura A: theta1 (rad) (top) & u (volts) (bottom) - Y separados"),
+        ([1, 2, 3, 4, 5], True, "Figura A: theta1 (rad) (top) & u (volts) (bottom) - Y separados"),
         # exemplo: figura B com d2 e d3 no mesmo eixo (Y compartilhado)
         # ([2, 3], False, "Figura B: d2 & d3 - mesmo eixo Y"),
         # você pode adicionar quantas figuras quiser, p.ex. ([1,2,3], False, "Outra")

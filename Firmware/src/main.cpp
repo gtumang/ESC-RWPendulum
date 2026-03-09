@@ -2,59 +2,10 @@
 #include <ESP32Encoder.h>
 #include "defines.h"
 
-// Definições de pinos (ajuste conforme sua conexão)
-#define ENC_RODA_A 5
-#define ENC_RODA_B 18
-#define ENC_PEND_A 19
-#define ENC_PEND_B 21
-#define IN_A 25
-#define IN_B 26
-#define ONBOARD_LED 2
-// #define BOTAO_SU 34
-#define BOTAO_CONT 27
 
-// Constantes do sistema
-#define Ts 0.02f
-#define en2rad_roda 0.006411413578755f
-#define en2rad_pend 0.001570796326795f
-#define pi 3.141592653589793f
-
-// Comunicacao
-#define DOUBLE_SIZE sizeof(double)
-#define QTD_VARS_COM 5
-#define TAMANHO_PAYLOAD (QTD_VARS_COM*sizeof(double))
-#define TAMANHO_FRAME (TAMANHO_PAYLOAD + 2*sizeof(u_char))
-void montaMensagem(u_char* msg, estados_t estados);
-
-// Declaração dos handles das tasks
-TaskHandle_t handleControle;
-TaskHandle_t handleComunicacao;
-
-// Criação de objeos p/ sincronia
-SemaphoreHandle_t handleMutex = NULL;
-
-// Ganho controlador
-static const estados_t K{
-  // .x1 = -60.2818,
-  .x1 = -5.541321904960439,
-  .x2 = -0.0,
-  .x3 = -0.726359517978251,
-  .x4 = -0.098019480640735
-};
-// static const estados_t K{
-//   .x1 = -5.388444876977633f,
-//   .x2 = 0.0,
-//   .x3 = -0.796233738333759f,
-//   .x4 = -0.086414484249118f
-// };
-bool enable_cont = false;
-void enable_cont_ISR(){
-  enable_cont = !enable_cont;
-}
 
 // Definições para adquirir informações
 // Condicoes iniciais
-#define ACQSIGNAL false
 #if ACQSIGNAL==true
 #define acq_time 10.0 //s
 #define acq_arr_size acq_time/Ts
@@ -64,14 +15,7 @@ bool acq_done = false;
 int i = 0;
 #endif
 
-// Filtro e derivada
-const double wf = 100; // rad/s
-static const double backwards_uf(double q, double q_ant, double ts);
-static const double backwards_filtered(double q, double q_ant, double qp_ant, double qp_ant_uf, double a, double b, double ts);
-static const double sign(double x);
-
-// Variaveis
-// double angulo_0 = 0.0f, theta_1 = 0.0f, angulo = 0.0f;
+// Variaveis Globais Auxiliares p/ Lógica
 estados_t estados{
   .x1 = 0.0f,
   .x2 = 0.0f,
@@ -90,19 +34,28 @@ estados_t estados_ant_unf{
   .x3 = 0.0f,
   .x4 = 0.0f
 };
-
+// Ganho controlador
+static const estados_t K{
+  .x1 = LQR_K1,
+  .x2 = LQR_K2,
+  .x3 = LQR_K3,
+  .x4 = LQR_K4
+};
+volatile bool aux = false;
+bool enable_cont = false;
 double u_hist=0;
 
-double ajusta_angulo(double angulo);
-double controle(estados_t x, estados_t k);
 
- 
-// Objetos globais
+//// Objetos globais
+// Encoder
 ESP32Encoder enc_roda;
 ESP32Encoder enc_pend;
+// Timer
 hw_timer_t *timer = NULL;
-volatile bool aux = false;
-
+// RTOS
+TaskHandle_t handleControle;
+TaskHandle_t handleComunicacao;
+SemaphoreHandle_t handleMutex = NULL;
 
 // Configuração PWM
 const int pwmChannelA = 0;
@@ -114,34 +67,23 @@ void IRAM_ATTR onTimer() {
   aux = true;
 }
 
-void drive(float u) {
-  int direction = 0;
-  if (u > 0) direction = 1;
-  if (u < 0) direction = 2;
+// Declarações de Funções
+void drive(float u);
+void montaMensagem(u_char* msg, estados_t estados);
+double ajusta_angulo(double angulo);
+double controle(estados_t x, estados_t k);
+static const double backwards_uf(double q, double q_ant, double ts);
+static const double backwards_filtered(double q, double q_ant, double qp_ant, double qp_ant_uf, double a, double b, double ts);
+static const double sign(double x);
 
-  u = fabs(u);
-  u = constrain(u, 0.0f, 1.0f);
-  //ledcWrite(pwmChannel, (uint32_t)(u * 255));
-
-  switch(direction) {
-    case 0:
-      ledcWrite(pwmChannelA, (uint32_t)(0 * 255));
-      ledcWrite(pwmChannelB, (uint32_t)(0 * 255));
-      break;
-    case 1:
-    
-      ledcWrite(pwmChannelA, (uint32_t)(u * 255));
-      ledcWrite(pwmChannelB, (uint32_t)(0 * 255));
-      break;
-    case 2:
-      ledcWrite(pwmChannelA, (uint32_t)(0 * 255));
-      ledcWrite(pwmChannelB, (uint32_t)(u * 255));
-      break;
-  }
-}
-
+// Definição das Funções-Tarefas
 void taskControle(void* pvParameters);
 void taskComunicacao(void* pvParameters);
+
+// ISRs
+void enable_cont_ISR(){
+  enable_cont = !enable_cont;
+}
 
 void setup() {
   Serial.begin(9600);
@@ -223,17 +165,14 @@ void taskControle(void* pvParameteres){
 
         estados_ant = estados;
 
-        estados.x1 = ajusta_angulo(enc_pend.getCount() * en2rad_pend);
+        estados.x1 = ajusta_angulo(estados.x1);
 
         double u = controle(estados, K);
 
-        if(abs(u) > 12) u = sign(u)*12;
-
-        u = 6;
         if(!enable_cont) u=0.0f;
         drive(u);
 
-        u_hist = enable_cont;
+        u_hist = u;
         xSemaphoreGive(handleMutex);
       }
     }
@@ -262,6 +201,32 @@ void taskComunicacao(void* pvParameters){
 };
 
 void loop() {}
+
+void drive(float u) {
+  int direction = 0;
+  if (u > 0) direction = 1;
+  if (u < 0) direction = 2;
+
+  u = fabs(u);
+  u = constrain(u, 0.0f, 1.0f);
+  //ledcWrite(pwmChannel, (uint32_t)(u * 255));
+
+  switch(direction) {
+    case 0:
+      ledcWrite(pwmChannelA, (uint32_t)(0 * 255));
+      ledcWrite(pwmChannelB, (uint32_t)(0 * 255));
+      break;
+    case 1:
+    
+      ledcWrite(pwmChannelA, (uint32_t)(u * 255));
+      ledcWrite(pwmChannelB, (uint32_t)(0 * 255));
+      break;
+    case 2:
+      ledcWrite(pwmChannelA, (uint32_t)(0 * 255));
+      ledcWrite(pwmChannelB, (uint32_t)(u * 255));
+      break;
+  }
+}
 
 static const double backwards_uf(double q, double q_ant, double ts){
   return 1.0f/Ts*(q - q_ant);
