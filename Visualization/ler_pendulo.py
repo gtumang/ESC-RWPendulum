@@ -8,7 +8,7 @@ import time
 from dataclasses import dataclass
 
 # Ajuste a porta serial e baudrate conforme seu sistema
-SERIAL_PORT = "COM3"   # Windows ex: "COM3"
+SERIAL_PORT = "COM7"   # Windows ex: "COM3"
 BAUDRATE = 9600
 TIMEOUT = 0.5  # segundos
 
